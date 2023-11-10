@@ -1,3 +1,3 @@
 # superPETmarket
 
-Um supermercado de cachorros?
+Aplicativo de um supermercado de cachorros?
