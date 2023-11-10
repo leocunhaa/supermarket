@@ -1,20 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Login from './src/pages/introducao/Login';
+import CreateAccount from "./src/pages/createAccount/CreateAccount";
+import Home from "./src/pages/home/Home";
+import ForgotPassword from "./src/pages/forgotPassword/ForgotPassword";
+import Icon from 'react-native-vector-icons/AntDesign'
 
-export default function App() {
+function App(): JSX.Element {
+  const Stack = createNativeStackNavigator();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+
+    <NavigationContainer>
+      <Stack.Navigator>
+
+        <Stack.Screen options={{headerShown: false}} name="login" component={Login}></Stack.Screen>
+        <Stack.Screen options={{title: "Criar Usuario"}} name="createAccount" component={CreateAccount}></Stack.Screen>
+        <Stack.Screen options={{title: "Recuperar Senha"}} name="forgotPassword" component={ForgotPassword}></Stack.Screen>
+        <Stack.Screen options={{title: "Ofertas", 
+        headerBackVisible: false, 
+        headerTitleAlign: "center", 
+        headerRight: ()=> (<Icon name="logout" size={23}></Icon>), 
+        headerLeft: ()=> (<Icon name="shoppingcart" size={23}></Icon>)}} 
+        name="home" 
+        component={Home}></Stack.Screen>
+
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+export default App;
