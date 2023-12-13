@@ -10,13 +10,13 @@ const Styles = StyleSheet.create({
     },
   
     label:{
-        color: "#848484"
+        color: "#4b0081"
     },
 
     input:{
         width: "100%",
         height: 40,
-        borderColor: "#848484",
+        borderColor: "#4b0081",
         borderWidth: 1,
         marginTop: "3%",
         marginBottom:"5%",
@@ -32,13 +32,13 @@ const Styles = StyleSheet.create({
     },
 
     link:{
-        color: "#2196F3",
+        color: "#4b0081",
         marginLeft: "10%",
     },
 
    button:{
     position: "absolute",
-    backgroundColor: "#2196F3",
+    backgroundColor: "#4b0081",
     borderRadius: 50,
     paddingVertical: 8,
     width: "60%",
@@ -58,7 +58,7 @@ const Styles = StyleSheet.create({
 
    buttonCreateAccount:{
     position: "absolute",
-    backgroundColor: "#2196F3",
+    backgroundColor: "#4b0081",
     borderRadius: 50,
     paddingVertical: 8,
     width: "60%",
@@ -82,7 +82,7 @@ const Styles = StyleSheet.create({
 
    text:{
     fontSize: 28,
-    color: "#848484"
+    color: "#4b0081"
    }
     
   });

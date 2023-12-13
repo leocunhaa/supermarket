@@ -16,20 +16,25 @@ const StylesHome = StyleSheet.create({
     },
 
     buttonText:{
-        fontSize: 12,
+        fontSize: 15,
         color: "#FFF",
         fontWeight: "bold"
     },
 
     button:{
-        backgroundColor: "#848484",
-        borderRadius: 10,
-        paddingVertical: 5,
-        width: "50%",
+        backgroundColor: "#4b0081",
+        borderRadius: 5,
+        paddingVertical: 10,
+        width: "60%",
         alignSelf: "center",
         bottom: "-2%",
         alignItems: "center",
         justifyContent: "center"
+    },
+
+    card:{
+        
+        backgroundColor: "#4b0081"
     },
 
     productContainer:{
@@ -50,8 +55,8 @@ const StylesHome = StyleSheet.create({
     },
     addButton:{
 
+
     }
-    
 
 })
 
