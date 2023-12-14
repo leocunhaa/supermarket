@@ -56,6 +56,12 @@ const StylesHome = StyleSheet.create({
     addButton:{
 
 
+    },
+
+    fab:{
+        position: "absolute",
+        bottom: 30,
+        right: 30,
     }
 
 })

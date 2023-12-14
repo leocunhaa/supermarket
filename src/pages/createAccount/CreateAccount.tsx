@@ -13,7 +13,7 @@ const CreateAccount = ({ navigation }: any) => {
   const handleCreateAccount = async () => {
     try {
       console.log("Botão de Cadastrar pressionado");
-      const response = await fetch("http://172.20.10.6:3000/criar", {
+      const response = await fetch("http://10.5.11.70:3000/criar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

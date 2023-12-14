@@ -1,9 +1,10 @@
-import { Card } from "@rneui/base";
+import { Card, FAB } from "@rneui/base";
 import React from "react";
 import {ScrollView, Text, View, TouchableOpacity, ToastAndroid, Pressable} from 'react-native'
 import StylesHome from "../home/StyleHome";
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useState } from "react";
+import ChatModal from "../../chat/chatModal";
 
 const products = [
 
@@ -15,14 +16,20 @@ const products = [
 
 ]
 
-const Home = ({shoppingCart, setShoppingCart}:any) =>{
-
+const Home = ({ shoppingCart, setShoppingCart }: any) => {
+    const [isChatOpen, setIsChatOpen] = useState(false);
+    
     const openToast = (message: string)=>{
         ToastAndroid.show(message, 3000)
     }
 
+    const handleFABPress = () => {
+        setIsChatOpen(true);
+      };
+      
     return(
-    
+        
+        <>
         <ScrollView style={StylesHome.card}>
             {
             products.map((product, i)=>{
@@ -94,10 +101,31 @@ const Home = ({shoppingCart, setShoppingCart}:any) =>{
                     
                 </Card>
                 )
-          })
+            })
+
         }
+
+    
+
         </ScrollView>
+
+        <FAB style={StylesHome.fab}
+        visible={true}
+        icon={{ name: 'chat', color: '#FFF' }}
+        color='#4b0081'
+        onPress={handleFABPress}
+        ></FAB>
+
+{isChatOpen && (
+        <ChatModal onClose={() => setIsChatOpen(false)} userName="Usuario" />
+        )}
+
+
+        
+</>
+      
     )
 }
 
 export default Home
+
