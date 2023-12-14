@@ -15,4 +15,4 @@ const Identify = ()=>{
     )
 }
 
-export default identify
+export default Identify

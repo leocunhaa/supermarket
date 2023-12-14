@@ -10,9 +10,10 @@ const ChatModal = ({ onClose, userName }: { onClose: () => void, userName: strin
 
   useEffect(() => {
     // Lidar com mensagens recebidas do servidor
-    socket.on('chat', (msg: string) => {
-      setMessages((prevMessages) => [...prevMessages, msg]);
-    });
+    socket.on('chat', (data: { user: string, message: string }) => {
+      const { user, message } = data;
+      setMessages((prevMessages) => [...prevMessages, `${user}: ${message}`]);
+});
 
     // Limpeza da conexão ao desmontar o componente
     return () => {
@@ -21,12 +22,14 @@ const ChatModal = ({ onClose, userName }: { onClose: () => void, userName: strin
   }, []);  // Executado apenas uma vez ao montar o componente
 
   const handleSendMessage = () => {
-    // Enviar a mensagem para o servidor
-    const messageData = `${userName}: ${inputMessage}`; // Concatenar o nome do usuário à mensagem
-    socket.emit('chat', messageData);
-
-    // Limpar o campo de entrada
-    setInputMessage('');
+    if (userName && inputMessage) {
+      // Enviar a mensagem para o servidor
+      const messageData = { user: userName, message: inputMessage };
+      socket.emit('chat', messageData);
+  
+      // Limpar o campo de entrada
+      setInputMessage('');
+    }
   };
 
   return (
