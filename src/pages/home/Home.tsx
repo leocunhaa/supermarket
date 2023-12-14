@@ -128,4 +128,3 @@ const Home = ({ shoppingCart, setShoppingCart }: any) => {
 }
 
 export default Home
-
