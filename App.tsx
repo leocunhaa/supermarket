@@ -7,16 +7,17 @@ import ForgotPassword from "./src/pages/forgotPassword/ForgotPassword";
 import ShoppingCart from "./src/pages/shoppingCart/ShoppingCart";
 import Icon from 'react-native-vector-icons/AntDesign'
 import { useState } from "react";
+import { View } from "react-native";
 
 function App(): JSX.Element {
   const Stack = createNativeStackNavigator();
-  const [shoppingCart, setShoppingCart] = useState([])
+  const [shoppingCart, setShoppingCart, ] = useState([])
 
   return (
 
     <NavigationContainer>
-      <Stack.Navigator>
 
+      <Stack.Navigator>
         <Stack.Screen options={{headerShown: false}} name="login" component={Login}></Stack.Screen>
         <Stack.Screen options={({navigation}) =>{
           return{
@@ -25,7 +26,9 @@ function App(): JSX.Element {
             headerTitleAlign: "center", 
             title: "Home", 
             headerLeft: ()=> (
-              <Icon onPress={()=>(navigation.navigate("shoppingCart", {shoppingCart}))} name="heart" size={23}></Icon>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Icon onPress={() => navigation.navigate("shoppingCart", { shoppingCart })} name="heart" size={23}></Icon>
+              </View>
               ), 
               headerRight: ()=> (
                 <>
@@ -36,21 +39,18 @@ function App(): JSX.Element {
         }} name="home">
           {
             () => (
-              <Home shoppingCart={shoppingCart} setShoppingCart={setShoppingCart}></Home>
+              <Home shoppingCart={shoppingCart} setShoppingCart={setShoppingCart} ></Home>
             )
           }
         </Stack.Screen>
 
         <Stack.Screen options={{headerShown: false}} name="createAccount" component={CreateAccount}></Stack.Screen>
         <Stack.Screen options={{headerShown: false}} name="forgotPassword" component={ForgotPassword}></Stack.Screen>
-        <Stack.Screen options={{ title: "Favoritos" }} name="shoppingCart" component={ShoppingCart}></Stack.Screen>
+        <Stack.Screen options={{ title: "Carrocinha" }} name="shoppingCart" component={ShoppingCart}></Stack.Screen>
 
       </Stack.Navigator>
     </NavigationContainer>
-
   );
-
 }
-
 
 export default App;

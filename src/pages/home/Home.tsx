@@ -5,6 +5,7 @@ import StylesHome from "../home/StyleHome";
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useState } from "react";
 import ChatModal from "../../chat/chatModal";
+import Toast from 'react-native-toast-message';
 
 const products = [
 
@@ -14,10 +15,23 @@ const products = [
     {name: "Chihuahua", price: "R$4800,00", quantity: 3, image: "https://www.petlove.com.br/images/breeds/197823/profile/original/chihuahua_p.jpg?1539807811"},
     {name: "Buldogue", price: "R$5500,00", quantity: 5, image: "https://cobasi.vteximg.com.br/arquivos/ids/728793/english-bulldog-2705136_1920.png?v=637593914461000000"},
 
+
 ]
 
-const Home = ({ shoppingCart, setShoppingCart }: any) => {
+const Home = ({ shoppingCart, setShoppingCart}: any) => {
     const [isChatOpen, setIsChatOpen] = useState(false);
+    const [starredItems, setStarredItems] = useState<Array<number>>([]);
+
+    const toggleStar = (index: number) => {
+        if (starredItems.includes(index)) {
+          // Se o item já estiver marcado como favorito, remova-o
+          setStarredItems(starredItems.filter(itemIndex => itemIndex !== index));
+        } else {
+          // Se o item não estiver marcado como favorito, adicione-o
+          setStarredItems([...starredItems, index]);
+        }
+      };
+    
     
     const openToast = (message: string)=>{
         ToastAndroid.show(message, 3000)
@@ -39,21 +53,10 @@ const Home = ({ shoppingCart, setShoppingCart }: any) => {
                     <Card.Divider/>
                     <Card.Image source={{uri: product.image}}/>
                     
-                    {/*<View style={StylesHome.container}>
-                        <Text style={{fontSize: 15, marginEnd: "5%"}}> Preço: {product.price} </Text>
-                        <Text style={{fontSize: 15, marginEnd: "5%"}}> Quantidade: {product.quantity} </Text>
-                    </View>*/}
-    
-                    {/*<TouchableOpacity onPress={() => {
-                        openToast("Item adicionado ao carrinho")
-                        setShoppingCart([...shoppingCart, product]) //Os três pontinhos pegam item por item e adiciona ao array
-                        }} style={StylesHome.button}>
-                        <Text style={StylesHome.buttonText}>Adicionar aos favoritos</Text>
-                    </TouchableOpacity>*/}
-
                     <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+
                     <Pressable onPress={() =>{
-                        openToast("Item adicionado ao Favorito")
+                        openToast("Item adicionado a carrocinha")
                         setShoppingCart([...shoppingCart, product])
                     }} style={({pressed}: any) =>(
                         {
@@ -71,14 +74,12 @@ const Home = ({ shoppingCart, setShoppingCart }: any) => {
                         <Text style={{
                             fontSize: 15,
                             color: 'white'
-                        }}>Favoritar</Text>
-
+                        }}>Carrocinha</Text>
                     </Pressable>
 
-                    <Pressable onPress={()=>{
-                        openToast("Ver mais");
-                    }} 
-                    style={({pressed}) =>({
+                    <Pressable onPress={() =>{
+                        openToast("Adotar o cachorro");
+                        }} style={({pressed}) =>({
                         backgroundColor: pressed ? '#9a2edb' : '#4b0081',
                         borderRadius: 5,
                         paddingVertical: 10,
@@ -88,13 +89,22 @@ const Home = ({ shoppingCart, setShoppingCart }: any) => {
                         alignItems: "center",
                         justifyContent: "center",
                         fontSize: 15
-                    })}>
+                        })}>
 
                         <Text style={{
                             fontSize: 15,
                             color: 'white'
-                        }}>Ver mais</Text>
+                        }}>Adotar</Text>
 
+                    </Pressable>
+
+                    <Pressable onPress={() => toggleStar(i)}>
+                        <Icon
+                        name={starredItems.includes(i) ? "star" : "staro"}
+                        size={30}
+                        color={starredItems.includes(i) ? "#FFD700" : "#FFFFF"}
+                        style={{ alignSelf: 'flex-end', marginTop: 10 }}
+                    />
                     </Pressable>
 
                     </View>
@@ -116,15 +126,13 @@ const Home = ({ shoppingCart, setShoppingCart }: any) => {
         onPress={handleFABPress}
         ></FAB>
 
-{isChatOpen && (
-        <ChatModal onClose={() => setIsChatOpen(false)} userName="Usuario" />
+        {isChatOpen && (
+            <ChatModal onClose={() => setIsChatOpen(false)} userName="Usuario" />
         )}
-
-
-        
-</>
+        </>
       
     )
 }
 
 export default Home
+

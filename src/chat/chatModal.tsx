@@ -68,7 +68,6 @@ const ChatModal = ({ onClose, userName }: { onClose: () => void, userName: strin
   };
 
   return (
-
     
     <Modal animationType="slide"
     transparent={false}

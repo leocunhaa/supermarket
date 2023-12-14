@@ -3,7 +3,7 @@ import React from "react";
 import {Text, Image, ScrollView, Pressable} from 'react-native'
 
 const ShoppingCart = ({route}: any) =>{
-    const {shoppingCart} = route.params
+    const {shoppingCart, favoriteCart} = route.params
     return(
 
         <ScrollView>
@@ -41,3 +41,5 @@ const ShoppingCart = ({route}: any) =>{
 }
 
 export default ShoppingCart;
+
+
